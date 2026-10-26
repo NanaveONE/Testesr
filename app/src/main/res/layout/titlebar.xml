@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_bar_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:fitsSystemWindows="true"
+    app:elevation="0dp">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_scrollFlags="scroll" />
+
+    <!-- Only SettingsActivity enables this row. Keeping it here makes the tabs part of
+         the app bar, so the preference list is laid out below them on every screen size. -->
+    <HorizontalScrollView
+        android:id="@+id/settings_tabs_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:fillViewport="false"
+        android:scrollbars="none"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/settings_tabs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="6dp"
+            android:paddingBottom="10dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/settings_tab_system"
+                style="@style/SettingsTabButton"
+                android:text="@string/system"
+                android:drawableTop="@drawable/ic_settings_tab_system" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/settings_tab_graphics"
+                style="@style/SettingsTabButton"
+                android:text="@string/settings_tab_graphics"
+                android:drawableTop="@drawable/ic_settings_tab_graphics" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/settings_tab_audio"
+                style="@style/SettingsTabButton"
+                android:text="@string/audio"
+                android:drawableTop="@drawable/ic_settings_tab_audio" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/settings_tab_appearance"
+                style="@style/SettingsTabButton"
+                android:text="@string/appearance"
+                android:drawableTop="@drawable/ic_settings_tab_appearance" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/settings_tab_debug"
+                style="@style/SettingsTabButton"
+                android:text="@string/debug"
+                android:drawableTop="@drawable/ic_settings_tab_debug" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/settings_tab_about"
+                style="@style/SettingsTabButton"
+                android:text="@string/settings_tab_about"
+                android:drawableTop="@drawable/ic_settings_tab_about" />
+        </LinearLayout>
+    </HorizontalScrollView>
+</com.google.android.material.appbar.AppBarLayout>

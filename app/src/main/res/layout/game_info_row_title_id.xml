@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="32dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <ImageView android:layout_width="18dp" android:layout_height="18dp" android:contentDescription="@null" android:src="@drawable/ic_game_id" app:tint="?attr/colorOnSurface" />
+    <TextView android:layout_width="96dp" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:text="@string/game_info_title_id" android:textSize="12sp" />
+    <TextView android:id="@+id/info_title_id" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:ellipsize="end" android:gravity="end" android:maxLines="1" android:textSize="12sp" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/copy_title_id"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:contentDescription="@string/copied_to_clipboard"
+        app:icon="@drawable/ic_copy"
+        app:iconSize="17dp" />
+</LinearLayout>

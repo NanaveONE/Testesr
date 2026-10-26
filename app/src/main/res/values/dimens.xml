@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="grid_padding">3dp</dimen>
+    <dimen name="onScreenItemHorizontalMargin">10dp</dimen>
+    <dimen name="cornerRadius">6dp</dimen>
+    <dimen name="cornerRadiusMedium">12dp</dimen>
+
+    <!-- Faixa na borda esquerda que detecta o gesto de abrir o menu rápido em jogo -->
+    <dimen name="quickMenuEdgeWidth">24dp</dimen>
+    <dimen name="quickMenuPanelWidth">370dp</dimen>
+
+    <!-- Remove the default material slider vertical padding -->
+    <dimen name="mtrl_slider_widget_height" tools:override="true">0dp</dimen>
+</resources>

@@ -1,0 +1,94 @@
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:key="category_controls">
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="auto_map_controllers"
+            android:title="@string/auto_map_controllers"
+            android:summary="@string/auto_map_controllers_description"
+            android:defaultValue="true"
+            app:isPreferenceVisible="false" />
+        <org.stratoemu.strato.preference.ControllerPreference index="0" />
+        <org.stratoemu.strato.preference.ControllerPreference index="1" />
+        <org.stratoemu.strato.preference.ControllerPreference index="2" />
+        <org.stratoemu.strato.preference.ControllerPreference index="3" />
+        <org.stratoemu.strato.preference.ControllerPreference index="4" />
+        <org.stratoemu.strato.preference.ControllerPreference index="5" />
+        <org.stratoemu.strato.preference.ControllerPreference index="6" />
+        <org.stratoemu.strato.preference.ControllerPreference index="7" />
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="on_screen_control"
+            android:title="@string/osc_enable"
+            android:summaryOn="@string/osc_shown"
+            android:summaryOff="@string/osc_not_shown"
+            android:defaultValue="true" />
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="on_screen_control_feedback"
+            android:title="@string/osc_feedback"
+            android:summary="@string/osc_feedback_description"
+            android:defaultValue="true" />
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="on_screen_control_recenter_sticks"
+            android:title="@string/osc_recenter_sticks"
+            android:summary="@string/osc_recenter_sticks_desc"
+            android:defaultValue="true" />
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="on_screen_control_use_stick_regions"
+            android:title="@string/osc_use_stick_regions"
+            android:summary="@string/osc_use_stick_regions_desc"
+            android:defaultValue="false" />
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="right_stick_touch_swipe"
+            android:title="@string/right_stick_touch_swipe"
+            android:summary="@string/right_stick_touch_swipe_desc"
+            android:defaultValue="false" />
+        <SeekBarPreference
+            android:key="right_stick_swipe_sensitivity_x"
+            android:title="@string/right_stick_swipe_sensitivity_x"
+            android:summary="@string/right_stick_swipe_sensitivity_x_desc"
+            android:dependency="right_stick_touch_swipe"
+            android:defaultValue="100"
+            android:min="25"
+            android:max="300"
+            app:showSeekBarValue="true" />
+        <SeekBarPreference
+            android:key="right_stick_swipe_sensitivity_y"
+            android:title="@string/right_stick_swipe_sensitivity_y"
+            android:summary="@string/right_stick_swipe_sensitivity_y_desc"
+            android:dependency="right_stick_touch_swipe"
+            android:defaultValue="100"
+            android:min="25"
+            android:max="300"
+            app:showSeekBarValue="true" />
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="right_stick_swipe_acceleration"
+            android:title="@string/right_stick_swipe_acceleration"
+            android:summary="@string/right_stick_swipe_acceleration_desc"
+            android:dependency="right_stick_touch_swipe"
+            android:defaultValue="true" />
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="right_stick_swipe_filter"
+            android:title="@string/right_stick_swipe_filter"
+            android:summary="@string/right_stick_swipe_filter_desc"
+            android:dependency="right_stick_touch_swipe"
+            android:defaultValue="true" />
+        <SeekBarPreference
+            android:key="right_stick_swipe_deadzone"
+            android:title="@string/right_stick_swipe_deadzone"
+            android:summary="@string/right_stick_swipe_deadzone_desc"
+            android:dependency="right_stick_touch_swipe"
+            android:defaultValue="18"
+            android:min="0"
+            android:max="100"
+            app:showSeekBarValue="true" />
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="right_stick_swipe_invert_y"
+            android:title="@string/right_stick_swipe_invert_y"
+            android:summary="@string/right_stick_swipe_invert_y_desc"
+            android:dependency="right_stick_touch_swipe"
+            android:defaultValue="false" />
+        <androidx.preference.Preference
+            android:key="osc_edit_launch"
+            android:title="@string/osc_edit" />
+    </PreferenceCategory>
+</androidx.preference.PreferenceScreen>

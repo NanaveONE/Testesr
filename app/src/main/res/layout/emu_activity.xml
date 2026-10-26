@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:keepScreenOn="true"
+    tools:context=".EmulationActivity"
+    tools:ignore="RtlHardcoded">
+
+    <FrameLayout
+        android:id="@+id/game_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <org.stratoemu.strato.views.FixedRatioSurfaceView
+            android:id="@+id/game_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/overlay_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom">
+
+        <org.stratoemu.strato.input.onscreen.OnScreenControllerView
+            android:id="@+id/on_screen_controller_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/perf_stats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:clickable="false"
+            android:focusable="false"
+            android:importantForAccessibility="no"
+            android:maxLines="3"
+            android:textColor="@color/colorPerfStatsPrimary"
+            tools:text="FPS 60 • RAM 2000 MB • Battery 34.5°C • Power 2.4 W" />
+
+        <ImageButton
+            android:id="@+id/on_screen_pause_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:layout_marginRight="@dimen/onScreenItemHorizontalMargin"
+            android:background="?android:attr/actionBarItemBackground"
+            android:padding="8dp"
+            android:src="@drawable/ic_pause"
+            app:tint="#40FFFFFF"
+            tools:ignore="ContentDescription" />
+
+        <FrameLayout
+            android:id="@+id/emulation_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+    <!-- Zona invisível na borda esquerda que captura o gesto de arrastar para abrir o menu rápido -->
+    <View
+        android:id="@+id/quick_menu_edge_detector"
+        android:layout_width="@dimen/quickMenuEdgeWidth"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|start" />
+
+    <!-- Escurece o jogo por trás quando o menu rápido está aberto; toque fora fecha o menu -->
+    <View
+        android:id="@+id/quick_menu_scrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/quick_menu_panel"
+        android:layout_width="@dimen/quickMenuPanelWidth"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|start"
+        android:background="@color/quickMenuBackground"
+        android:visibility="gone">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="24dp"
+                android:paddingBottom="24dp">
+
+                <!-- Resume -->
+                <LinearLayout
+                    android:id="@+id/quick_menu_resume"
+                    android:focusable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_quick_menu_row"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="18dp">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginEnd="18dp"
+                        android:contentDescription="@string/quick_menu_resume"
+                        android:src="@drawable/ic_quick_menu_resume" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/quick_menu_resume"
+                            android:textAllCaps="true"
+                            android:textColor="@color/quickMenuAccent"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/quick_menu_resume_subtitle"
+                            android:textColor="@color/quickMenuSubtitle"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Show FPS -->
+                <LinearLayout
+                    android:id="@+id/quick_menu_fps_row"
+                    android:focusable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_quick_menu_row"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="18dp"
+                        android:contentDescription="@string/quick_menu_show_fps"
+                        android:src="@drawable/ic_quick_menu_fps" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/quick_menu_show_fps"
+                            android:textAllCaps="true"
+                            android:textColor="@color/quickMenuTitle"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/quick_menu_show_fps_subtitle"
+                            android:textColor="@color/quickMenuSubtitle"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/quick_menu_fps_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
+                        app:thumbTint="@color/quick_menu_switch_thumb"
+                        app:trackTint="@color/quick_menu_switch_track" />
+                </LinearLayout>
+
+                <!-- Hide on-screen controls -->
+                <LinearLayout
+                    android:id="@+id/quick_menu_hide_controls_row"
+                    android:focusable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_quick_menu_row"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="18dp"
+                        android:contentDescription="@string/quick_menu_hide_controls"
+                        android:src="@drawable/ic_quick_menu_hide_controls" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/quick_menu_hide_controls"
+                            android:textAllCaps="true"
+                            android:textColor="@color/quickMenuTitle"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/quick_menu_hide_controls_subtitle"
+                            android:textColor="@color/quickMenuSubtitle"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/quick_menu_hide_controls_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
+                        app:thumbTint="@color/quick_menu_switch_thumb"
+                        app:trackTint="@color/quick_menu_switch_track" />
+                </LinearLayout>
+
+                <!-- Aspect ratio (cicla ao tocar) -->
+                <LinearLayout
+                    android:id="@+id/quick_menu_aspect_ratio_row"
+                    android:focusable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_quick_menu_row"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="18dp"
+                        android:contentDescription="@string/quick_menu_aspect_ratio"
+                        android:src="@drawable/ic_quick_menu_aspect_ratio" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/quick_menu_aspect_ratio"
+                            android:textAllCaps="true"
+                            android:textColor="@color/quickMenuTitle"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/quick_menu_aspect_ratio_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textColor="@color/quickMenuAccent"
+                            android:textSize="13sp"
+                            tools:text="16:9 (Switch, Recommended)" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Validation layer (só aparece em builds não-release) -->
+                <LinearLayout
+                    android:id="@+id/quick_menu_validation_layer_row"
+                    android:focusable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_quick_menu_row"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="18dp"
+                        android:contentDescription="@string/quick_menu_validation_layer"
+                        android:src="@drawable/ic_quick_menu_validation_layer" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/quick_menu_validation_layer"
+                            android:textAllCaps="true"
+                            android:textColor="@color/quickMenuTitle"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/quick_menu_validation_layer_subtitle"
+                            android:textColor="@color/quickMenuSubtitle"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/quick_menu_validation_layer_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
+                        app:thumbTint="@color/quick_menu_switch_thumb"
+                        app:trackTint="@color/quick_menu_switch_track" />
+                </LinearLayout>
+
+                <!-- Sem limite de FPS -->
+                <LinearLayout
+                    android:id="@+id/quick_menu_disable_frame_throttling_row"
+                    android:focusable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_quick_menu_row"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="18dp"
+                        android:contentDescription="@string/quick_menu_disable_frame_throttling"
+                        android:src="@drawable/ic_quick_menu_frame_throttle" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/quick_menu_disable_frame_throttling"
+                            android:textAllCaps="true"
+                            android:textColor="@color/quickMenuTitle"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/quick_menu_disable_frame_throttling_subtitle"
+                            android:textColor="@color/quickMenuSubtitle"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/quick_menu_disable_frame_throttling_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
+                        app:thumbTint="@color/quick_menu_switch_thumb"
+                        app:trackTint="@color/quick_menu_switch_track" />
+                </LinearLayout>
+
+                <!-- On-device GPU debugger -->
+                <LinearLayout
+                    android:id="@+id/quick_menu_gpu_debugger_row"
+                    android:focusable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_quick_menu_row"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="18dp"
+                        android:contentDescription="@string/gpu_debugger_title"
+                        android:src="@drawable/ic_settings_tab_debug" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/gpu_debugger_title"
+                            android:textAllCaps="true"
+                            android:textColor="@color/quickMenuTitle"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/gpu_debugger_subtitle"
+                            android:textColor="@color/quickMenuSubtitle"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_quick_menu_chevron" />
+                </LinearLayout>
+
+                <!-- Exit game -->
+                <LinearLayout
+                    android:id="@+id/quick_menu_exit"
+                    android:focusable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_quick_menu_row"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="18dp"
+                        android:contentDescription="@string/quick_menu_exit"
+                        android:src="@drawable/ic_quick_menu_exit" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/quick_menu_exit"
+                            android:textAllCaps="true"
+                            android:textColor="@color/quickMenuDanger"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/quick_menu_exit_subtitle"
+                            android:textColor="@color/quickMenuSubtitle"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_quick_menu_chevron" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
+</FrameLayout>

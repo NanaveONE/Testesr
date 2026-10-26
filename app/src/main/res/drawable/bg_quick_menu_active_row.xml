@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fundo da linha ativa do menu rápido: retângulo escuro + barra de destaque amarela na esquerda -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/quickMenuActiveRowBackground" />
+        </shape>
+    </item>
+    <item
+        android:gravity="start"
+        android:width="3dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/quickMenuAccent" />
+        </shape>
+    </item>
+</layer-list>

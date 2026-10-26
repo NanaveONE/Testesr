@@ -1,0 +1,259 @@
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:key="category_system">
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summaryOff="@string/handheld_enabled"
+            android:summaryOn="@string/docked_enabled"
+            app:key="is_docked"
+            app:title="@string/use_docked" />
+        <org.stratoemu.strato.preference.CustomEditTextPreference
+            android:defaultValue="@string/username_default"
+            app:key="username_value"
+            app:limit="31"
+            app:title="@string/username" />
+        <org.stratoemu.strato.preference.ProfilePicturePreference
+            app:key="profile_picture_value"
+            app:title="@string/profile_picture" />
+        <org.stratoemu.strato.preference.LanguagePreference
+            app:key="app_language"
+            app:persistent="false"
+            app:title="@string/app_language" />
+        <org.stratoemu.strato.preference.IntegerListPreference
+            android:defaultValue="1"
+            android:entries="@array/system_languages"
+            android:entryValues="@array/system_languages_val"
+            app:key="system_language"
+            app:refreshRequired="true"
+            app:title="@string/system_language"
+            app:useSimpleSummaryProvider="true" />
+        <org.stratoemu.strato.preference.IntegerListPreference
+            android:defaultValue="-1"
+            android:entries="@array/system_region"
+            android:entryValues="@array/system_region_val"
+            app:key="system_region"
+            app:title="@string/system_region"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summary="@string/internet"
+            app:key="is_internet_enabled"
+            app:title="Enable Internet" />
+        <org.stratoemu.strato.preference.IntegerListPreference
+            android:defaultValue="6"
+            android:entries="@array/orientation_entries"
+            android:entryValues="@array/orientation_values"
+            app:key="orientation"
+            app:title="@string/screen_orientation"
+            app:useSimpleSummaryProvider="true" />
+        <org.stratoemu.strato.preference.IntegerListPreference
+            android:defaultValue="0"
+            android:entries="@array/aspect_ratios"
+            app:key="aspect_ratio"
+            app:title="@string/aspect_ratio"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="category_graphics">
+        <org.stratoemu.strato.preference.IntegerListPreference
+            android:defaultValue="0"
+            android:entries="@array/gpu_accuracy_entries"
+            android:entryValues="@array/gpu_accuracy_values"
+            android:summary="@string/gpu_accuracy_desc"
+            app:key="gpu_accuracy"
+            app:title="@string/gpu_accuracy"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summaryOff="@string/max_refresh_rate_disabled"
+            android:summaryOn="@string/max_refresh_rate_enabled"
+            app:key="max_refresh_rate"
+            app:title="@string/max_refresh_rate" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:summaryOff="@string/enable_foldable_layout_disabled"
+            android:summaryOn="@string/enable_foldable_layout_enabled"
+            app:key="enable_foldable_layout"
+            app:title="@string/enable_foldable_layout"
+            app:isPreferenceVisible="false"/>
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:summaryOff="@string/triple_buffering_disabled"
+            android:summaryOn="@string/triple_buffering_enabled"
+            app:key="force_triple_buffering"
+            app:title="@string/force_triple_buffering" />
+        <org.stratoemu.strato.preference.IntegerListPreference
+            android:defaultValue="2"
+            android:entries="@array/vsync_mode_entries"
+            android:entryValues="@array/vsync_mode_values"
+            android:summary="@string/vsync_mode_desc"
+            app:key="vsync_mode"
+            app:title="@string/vsync_mode"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:dependency="force_triple_buffering"
+            android:summaryOff="@string/disable_frame_throttling_disabled"
+            android:summaryOn="@string/disable_frame_throttling_enabled"
+            app:key="disable_frame_throttling"
+            app:title="@string/disable_frame_throttling" />
+        <SeekBarPreference
+            android:defaultValue="4"
+            android:max="6"
+            android:min="1"
+            android:summary="@string/executor_slot_count_scale_desc"
+            app:key="executor_slot_count_scale"
+            app:showSeekBarValue="true"
+            app:title="@string/executor_slot_count_scale" />
+        <SeekBarPreference
+            android:defaultValue="256"
+            android:max="1024"
+            android:min="0"
+            android:summary="@string/executor_flush_threshold_desc"
+            app:key="executor_flush_threshold"
+            app:showSeekBarValue="true"
+            app:title="@string/executor_flush_threshold" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summary="@string/use_direct_memory_import_desc"
+            app:key="use_direct_memory_import"
+            app:title="@string/use_direct_memory_import" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summary="@string/force_max_gpu_clocks_desc"
+            app:key="force_max_gpu_clocks"
+            app:title="@string/force_max_gpu_clocks" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:summaryOff="@string/use_fast_gpu_time_disabled"
+            android:summaryOn="@string/use_fast_gpu_time_enabled"
+            app:key="use_fast_gpu_time"
+            app:title="@string/use_fast_gpu_time" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summary="@string/free_guest_texture_memory_desc"
+            app:key="free_guest_texture_memory"
+            app:title="@string/free_guest_texture_memory" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summaryOff="@string/aggressive_ram_usage_disabled"
+            android:summaryOn="@string/aggressive_ram_usage_enabled"
+            app:key="aggressive_ram_usage"
+            app:title="@string/aggressive_ram_usage" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summaryOff="@string/aggressive_vram_usage_disabled"
+            android:summaryOn="@string/aggressive_vram_usage_enabled"
+            app:key="aggressive_vram_usage"
+            app:title="@string/aggressive_vram_usage" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:summaryOff="@string/shader_cache_disabled"
+            android:summaryOn="@string/shader_cache_enabled"
+            app:key="use_disk_shader_cache"
+            app:title="@string/shader_cache" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summaryOff="@string/gpu_cache_gc_disabled"
+            android:summaryOn="@string/gpu_cache_gc_enabled"
+            app:key="use_gpu_cache_garbage_collection"
+            app:title="@string/gpu_cache_gc" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summaryOff="@string/async_shader_sync_disabled"
+            android:summaryOn="@string/async_shader_sync_enabled"
+            app:key="async_shader_sync"
+            app:title="@string/async_shader_sync" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summaryOff="@string/async_pipeline_compilation_disabled"
+            android:summaryOn="@string/async_pipeline_compilation_enabled"
+            app:key="async_pipeline_compilation"
+            app:title="@string/async_pipeline_compilation" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:summaryOff="@string/async_gpu_emulation_disabled"
+            android:summaryOn="@string/async_gpu_emulation_enabled"
+            app:key="async_gpu_emulation"
+            app:title="@string/async_gpu_emulation" />
+        <org.stratoemu.strato.preference.IntegerListPreference
+            android:defaultValue="0"
+            android:dependency="async_shader_sync"
+            android:entries="@array/shader_compilation_workers_entries"
+            android:entryValues="@array/shader_compilation_workers_values"
+            app:key="shader_compilation_workers"
+            app:title="@string/shader_compilation_workers"
+            app:useSimpleSummaryProvider="true" />
+        <org.stratoemu.strato.preference.IntegerListPreference
+            android:defaultValue="0"
+            android:entries="@array/pipeline_compilation_workers_entries"
+            android:entryValues="@array/pipeline_compilation_workers_values"
+            app:key="pipeline_compilation_workers"
+            app:title="@string/pipeline_compilation_workers"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summaryOff="@string/enable_fast_gpu_readback_disabled"
+            android:summaryOn="@string/enable_fast_gpu_readback_enabled"
+            app:key="enable_fast_gpu_readback_hack"
+            app:title="@string/enable_fast_gpu_readback" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:dependency="enable_fast_gpu_readback_hack"
+            android:summaryOff="@string/enable_fast_readback_writes_disabled"
+            android:summaryOn="@string/enable_fast_readback_writes_enabled"
+            app:key="enable_fast_readback_writes"
+            app:title="@string/enable_fast_readback_writes" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:summaryOff="@string/range_aware_buffer_writes_disabled"
+            android:summaryOn="@string/range_aware_buffer_writes_enabled"
+            app:key="range_aware_buffer_writes"
+            app:title="@string/range_aware_buffer_writes" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summaryOff="@string/disable_subgroup_shuffle_disabled"
+            android:summaryOn="@string/disable_subgroup_shuffle_enabled"
+            app:key="disable_subgroup_shuffle"
+            app:title="@string/disable_subgroup_shuffle" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="category_driver">
+        <org.stratoemu.strato.preference.GpuDriverPreference
+            app:key="gpu_driver"
+            app:title="@string/gpu_driver_config" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="category_audio">
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summaryOff="@string/disable_audio_output_disabled"
+            android:summaryOn="@string/disable_audio_output_enabled"
+            app:key="is_audio_output_disabled"
+            app:title="@string/disable_audio_output" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="category_debug">
+        <Preference
+            app:key="share_log"
+            app:title="@string/share_logs" />
+        <org.stratoemu.strato.preference.IntegerListPreference
+            android:defaultValue="2"
+            android:entries="@array/log_level"
+            app:key="log_level"
+            app:title="@string/log_level"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:summaryOff="@string/validation_layer_disabled"
+            android:summaryOn="@string/validation_layer_enabled"
+            app:key="validation_layer"
+            app:isPreferenceVisible="false"
+            app:title="@string/validation_layer" />
+    </PreferenceCategory>
+</androidx.preference.PreferenceScreen>

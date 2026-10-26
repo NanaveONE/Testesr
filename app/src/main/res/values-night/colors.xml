@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gameDetailsOptionSurface">#35445A</color>
+    <color name="gameDetailsOptionStroke">#62728A</color>
+    <color name="gameDetailsSaveActionSurface">#2A3748</color>
+</resources>

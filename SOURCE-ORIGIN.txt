@@ -1,0 +1,6 @@
+Source of copied Android resources: SKYrus-SKYmu-Principal (1) (8).zip
+Source SHA-256: 6f6380763cfee0bdb559e11d865e8e98bb8ddbde314a4ec8735646e1fcc59400
+Source directory: app/src/main/res/
+Resources copied verbatim; generated preview_*.xml files normalize emulator-specific
+preference class names to AndroidX visual equivalents. All original XMLs retained.
+No code, submodules, GPU, kernel, or native game execution from emulator is bundled.

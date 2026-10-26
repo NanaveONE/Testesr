@@ -1,0 +1,43 @@
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:summaryOff="@string/perf_stats_desc_off"
+        android:summaryOn="@string/perf_stats_desc_on"
+        app:key="perf_stats"
+        app:title="@string/perf_stats" />
+
+    <androidx.preference.PreferenceCategory
+        android:title="@string/perf_overlay_metrics_title"
+        app:dependency="perf_stats">
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            app:key="perf_overlay_show_fps"
+            app:title="@string/perf_overlay_show_fps" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            app:key="perf_overlay_show_ram"
+            app:title="@string/perf_overlay_show_ram" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            app:key="perf_overlay_show_battery_temperature"
+            app:title="@string/perf_overlay_show_battery_temperature" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            app:key="perf_overlay_show_battery_power"
+            app:title="@string/perf_overlay_show_battery_power" />
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.Preference
+        app:dependency="perf_stats"
+        app:icon="@drawable/ic_home_menu_overlays"
+        app:key="perf_overlay_edit"
+        app:summary="@string/perf_overlay_edit_summary"
+        app:title="@string/perf_overlay_edit" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:summaryOff="@string/show_pause_button_disabled"
+        android:summaryOn="@string/show_pause_button_enabled"
+        app:key="show_pause_button"
+        app:title="@string/show_pause_button" />
+</androidx.preference.PreferenceScreen>

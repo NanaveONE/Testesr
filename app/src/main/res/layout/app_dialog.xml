@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="?attr/colorSurface"
+    app:cardCornerRadius="28dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <org.stratoemu.strato.views.DragHandleView
+            android:id="@+id/drag_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:minHeight="28dp"
+            android:paddingBottom="2dp" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:fillViewport="false"
+            android:overScrollMode="never">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nextFocusRight="@id/game_play"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="18dp">
+
+                <!-- Kept in the default layout as well so ViewBinding sees the same ID/type in landscape. -->
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/landscape_column_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.55" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_icon"
+                    android:layout_width="148dp"
+                    android:layout_height="148dp"
+                    android:contentDescription="@string/icon"
+                    android:focusable="false"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
+                    tools:src="@drawable/default_icon" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/game_icon"
+                    app:layout_constraintTop_toTopOf="@id/game_icon">
+
+                    <TextView
+                        android:id="@+id/game_title"
+                        style="?attr/textAppearanceTitleLarge"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="4"
+                        android:textAlignment="viewStart"
+                        android:textSize="19sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="NARUTO SHIPPUDEN: ULTIMATE NINJA STORM 4 ROAD TO BORUTO" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/game_play"
+                        style="@style/Widget.Material3.Button.Icon"
+                        android:layout_width="0dp"
+                        android:layout_height="46dp"
+                        android:layout_marginTop="8dp"
+                        android:contentDescription="@string/play"
+                        android:focusedByDefault="true"
+                        android:text="@string/play"
+                        android:textSize="16sp"
+                        app:icon="@drawable/ic_play"
+                        app:iconGravity="textStart"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/game_title" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/title_id_chip"
+                        android:layout_width="0dp"
+                        android:visibility="gone"
+                        android:layout_height="34dp"
+                        android:layout_marginTop="6dp"
+                        app:cardBackgroundColor="?attr/colorSurfaceVariant"
+                        app:cardCornerRadius="17dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/game_play"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="11dp">
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_game_id"
+                                app:tint="?attr/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/game_title_id"
+                                style="?attr/textAppearanceBodySmall"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                tools:text="01006CF00CF60000" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:id="@+id/meta_chip_row"
+                        android:layout_width="0dp"
+                        android:visibility="gone"
+                        android:layout_height="34dp"
+                        android:layout_marginTop="6dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/title_id_chip">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.8"
+                            app:cardBackgroundColor="?attr/colorSurfaceVariant"
+                            app:cardCornerRadius="17dp"
+                            app:cardElevation="0dp"
+                            app:strokeWidth="0dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="10dp">
+
+                                <ImageView
+                                    android:layout_width="17dp"
+                                    android:layout_height="17dp"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_game_version"
+                                    app:tint="?attr/colorOnSurface" />
+
+                                <TextView
+                                    android:id="@+id/game_version"
+                                    style="?attr/textAppearanceBodySmall"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="7dp"
+                                    android:layout_weight="1"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    tools:text="v1.0.0" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <Space
+                            android:layout_width="6dp"
+                            android:layout_height="1dp" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            app:cardBackgroundColor="?attr/colorSurfaceVariant"
+                            app:cardCornerRadius="17dp"
+                            app:cardElevation="0dp"
+                            app:strokeWidth="0dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="10dp">
+
+                                <ImageView
+                                    android:layout_width="17dp"
+                                    android:layout_height="17dp"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_game_developer"
+                                    app:tint="?attr/colorOnSurface" />
+
+                                <TextView
+                                    android:id="@+id/game_author"
+                                    style="?attr/textAppearanceBodySmall"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="7dp"
+                                    android:layout_weight="1"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    tools:text="BANDAI NAMCO Entertainment Inc." />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Per-game toggle sits in the right column, directly below Play. -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/custom_settings_card"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@color/gameDetailsOptionSurface"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/gameDetailsOptionStroke"
+                    app:layout_constraintStart_toStartOf="@id/constraintLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraintLayout"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="6dp">
+
+                        <TextView
+                            android:id="@+id/custom_settings_hint"
+                            style="?attr/textAppearanceLabelMedium"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="@string/custom_settings_short" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/custom_settings_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/custom_settings_quick_title"
+                            android:scaleX="0.86"
+                            android:scaleY="0.86" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/header_bottom_barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="constraintLayout,custom_settings_card" />
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flexboxGeneral"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:flexWrap="nowrap"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/header_bottom_barrier">
+
+                    <!-- Kept for shortcut functionality; exposed from the overflow menu to match the reference layout. -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/game_pin"
+                        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        android:visibility="gone"
+                        app:icon="@drawable/ic_add_home" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <LinearLayout
+                    android:id="@+id/flexboxCustomGame"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/flexboxGeneral">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/game_settings"
+                            style="@style/Widget.Material3.Button.TonalButton.Icon"
+                            android:layout_width="0dp"
+                            android:layout_height="42dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/settings"
+                            android:textSize="12sp"
+                            app:icon="@drawable/ic_settings"
+                            app:iconSize="18dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/game_frame_generation"
+                            style="@style/Widget.Material3.Button.TonalButton.Icon"
+                            android:layout_width="0dp"
+                            android:layout_height="42dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/home_menu_frame_generation_title"
+                            android:textSize="11sp"
+                            app:icon="@drawable/ic_home_menu_frame_generation"
+                            app:iconSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/game_driver"
+                            style="@style/Widget.Material3.Button.TonalButton.Icon"
+                            android:layout_width="0dp"
+                            android:layout_height="42dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/home_menu_driver_title"
+                            android:textSize="12sp"
+                            app:icon="@drawable/ic_settings_tab_driver"
+                            app:iconSize="18dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/game_controls"
+                            style="@style/Widget.Material3.Button.TonalButton.Icon"
+                            android:layout_width="0dp"
+                            android:layout_height="42dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/home_menu_controls_title"
+                            android:textSize="12sp"
+                            app:icon="@drawable/ic_settings_tab_controls"
+                            app:iconSize="18dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/game_more"
+                            style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                            android:layout_width="1dp"
+                            android:layout_height="1dp"
+                            android:visibility="gone"
+                            android:contentDescription="@string/more_options"
+                            app:icon="@drawable/ic_more_horizontal" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/actions_divider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?attr/colorOutlineVariant"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/flexboxCustomGame" />
+
+                <ImageView
+                    android:id="@+id/save_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="12dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_game_save"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/actions_divider"
+                    app:tint="?attr/colorOnSurface" />
+
+                <TextView
+                    android:id="@+id/save_management"
+                    style="?attr/textAppearanceTitleSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/save_management"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/save_icon"
+                    app:layout_constraintTop_toTopOf="@id/save_icon" />
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flexboxSaves"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="8dp"
+                    app:alignItems="center"
+                    app:flexWrap="nowrap"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/save_management">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/import_save"
+                        style="@style/Widget.Material3.Button.TonalButton.Icon"
+                        app:backgroundTint="@color/gameDetailsSaveActionSurface"
+                        android:layout_width="wrap_content"
+                        android:layout_height="42dp"
+                        android:contentDescription="@string/import_save"
+                        android:text="@string/import_save"
+                        app:icon="@drawable/ic_add"
+                        app:layout_flexGrow="1" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/export_save"
+                        style="@style/Widget.Material3.Button.TonalButton.Icon"
+                        app:backgroundTint="@color/gameDetailsSaveActionSurface"
+                        android:layout_width="wrap_content"
+                        android:layout_height="42dp"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="@string/export_save"
+                        android:text="@string/export_save"
+                        app:icon="@drawable/ic_share"
+                        app:layout_flexGrow="1" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/delete_save"
+                        style="@style/Widget.Material3.Button.TonalButton.Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="42dp"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="@string/delete_all"
+                        android:text="@string/delete_all"
+                        android:textColor="?attr/colorOnErrorContainer"
+                        app:backgroundTint="?attr/colorErrorContainer"
+                        app:icon="@drawable/ic_delete"
+                        app:iconTint="?attr/colorOnErrorContainer"
+                        app:layout_flexGrow="1" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <TextView
+                    android:id="@+id/addon_content_management"
+                    style="?attr/textAppearanceTitleSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/addon_content_management"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/addon_arrow"
+                    app:layout_constraintStart_toEndOf="@id/addon_icon"
+                    app:layout_constraintTop_toBottomOf="@id/flexboxSaves" />
+
+                <ImageView
+                    android:id="@+id/addon_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_home_menu_content"
+                    app:layout_constraintBottom_toBottomOf="@id/addon_content_desc"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/addon_content_management"
+                    app:tint="?attr/colorOnSurface" />
+
+                <TextView
+                    android:id="@+id/addon_content_desc"
+                    style="?attr/textAppearanceBodySmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/addon_content_desc"
+                    app:layout_constraintEnd_toStartOf="@id/addon_arrow"
+                    app:layout_constraintStart_toEndOf="@id/addon_icon"
+                    app:layout_constraintTop_toBottomOf="@id/addon_content_management" />
+
+                <ImageView
+                    android:id="@+id/addon_arrow"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_keyboard_arrow_right"
+                    app:layout_constraintBottom_toBottomOf="@id/addon_content_desc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/addon_content_management"
+                    app:tint="?attr/colorOnSurface" />
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flexboxAddonContent"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="8dp"
+                    app:alignItems="center"
+                    app:flexWrap="nowrap"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/addon_content_desc">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/add_update"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="42dp"
+                        app:backgroundTint="@color/gameDetailsOptionSurface"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:contentDescription="@string/add_update"
+                        android:text="@string/add_update"
+                        app:layout_flexGrow="1"
+                        app:layout_flexShrink="1" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/add_dlc"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="42dp"
+                        app:backgroundTint="@color/gameDetailsOptionSurface"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="@string/add_dlc"
+                        android:text="@string/add_dlc"
+                        app:layout_flexGrow="1"
+                        app:layout_flexShrink="1" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/add_mods"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="42dp"
+                        app:backgroundTint="@color/gameDetailsOptionSurface"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="@string/add_mods"
+                        android:text="@string/add_mods"
+                        app:layout_flexGrow="1"
+                        app:layout_flexShrink="1" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/game_info_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="?attr/colorSurface"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/flexboxAddonContent"
+                    app:strokeColor="?attr/colorOutlineVariant"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="8dp">
+
+                        <include layout="@layout/game_info_row_title_id" />
+                        <include layout="@layout/game_info_row_version" />
+                        <include layout="@layout/game_info_row_developer" />
+                        <include layout="@layout/game_info_row_format" />
+                        <include layout="@layout/game_info_row_size" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,10 @@
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.preference.Preference app:key="document_provider" app:summary="@string/open_data_directory_summary" app:title="@string/open_data_directory" />
+    <androidx.preference.Preference app:key="search_location" app:title="@string/search_location" />
+    <Preference app:key="extra_game_folders" app:title="@string/add_game_folder" app:summary="@string/add_game_folder_summary" />
+    <androidx.preference.Preference app:key="prod_keys" app:title="@string/prod_keys" app:useSimpleSummaryProvider="true" />
+    <androidx.preference.Preference app:key="title_keys" app:title="@string/title_keys" app:useSimpleSummaryProvider="true" />
+    <androidx.preference.Preference app:key="save_data_manager" app:title="@string/save_data_manager" />
+    <androidx.preference.Preference app:key="firmware" app:title="@string/firmware" />
+    <Preference app:key="delete_firmware" app:title="@string/delete_firmware" />
+</androidx.preference.PreferenceScreen>

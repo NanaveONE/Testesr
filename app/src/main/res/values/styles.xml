@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Workaround for AndroidX PreferenceScreen since it doesn't use MaterialAlertDialogs -->
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="dialogCornerRadius">28dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="android:colorBackground">?attr/colorSurface</item>
+    </style>
+
+    <!-- Override of the MD3 Chip style to make text all caps -->
+    <style name="ChipChoice" parent="Widget.Material3.Chip.Filter.Elevated">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- Override the default switch preference style to use the MD3 switch -->
+    <style name="App.Preference.SwitchPreferenceCompat.Material3" parent="Preference.SwitchPreferenceCompat.Material">
+        <item name="android:widgetLayout">@layout/preference_widget_material_switch</item>
+    </style>
+
+    <!-- Override the default divider used in PreferenceScreen -->
+    <style name="App.PreferenceFragment.Material" parent="PreferenceFragment.Material">
+        <item name="android:divider">@drawable/preference_list_divider_m3</item>
+    </style>
+    <style name="SettingsTabButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:minWidth">96dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/settings_tab_content</item>
+        <item name="android:drawableTint">@color/settings_tab_content</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:background">@drawable/settings_tab_background</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+
+    <style name="HomePopupMenuTheme" parent="ThemeOverlay.Material3.Light">
+        <item name="android:colorBackground">#FFFFFF</item>
+        <item name="android:textColorPrimary">#17191C</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#17191C</item>
+    </style>
+</resources>

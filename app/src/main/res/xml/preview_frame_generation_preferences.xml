@@ -1,0 +1,6 @@
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SwitchPreferenceCompat android:defaultValue="false" android:summaryOff="@string/frame_generation_disabled" android:summaryOn="@string/frame_generation_enabled" app:key="frame_generation" app:title="@string/frame_generation" />
+    <SeekBarPreference android:defaultValue="2" android:min="2" android:max="4" android:dependency="frame_generation" app:key="frame_generation_multiplier" app:showSeekBarValue="true" app:title="@string/frame_generation_multiplier" android:summary="@string/frame_generation_multiplier_desc" />
+    <SwitchPreferenceCompat android:defaultValue="true" android:dependency="frame_generation" app:key="frame_generation_fp16" app:title="@string/frame_generation_fp16" android:summary="@string/frame_generation_fp16_desc" />
+    <androidx.preference.Preference app:key="lossless_dll" app:title="@string/lossless_dll_install" />
+</androidx.preference.PreferenceScreen>
